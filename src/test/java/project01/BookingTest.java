@@ -2,32 +2,44 @@ package project01;
 
 import api.project01.BookingAPI;
 import api.project01.StatusCode;
+import assertions.VerificationManager;
 import base.BaseTest;
+import constants.FrameworkConstants;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import request.pojo.project01.Booking;
-import request.pojo.project01.BookingDates;
-import response.project01.BookingResponse;
+import pojo.request.project01.Booking;
+import pojo.request.project01.BookingDates;
+import pojo.response.project01.BookingResponse;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 public class BookingTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"SMOKE","SANITY","REGRESSION"}, description = "I should be able to create booking")
     public void shouldBeAbleToCreateBooking(){
 
         Booking bookingRequest = bookingRequestBuilder();
-
-        System.out.println("Request Body :" + bookingRequest.toString());
-
         Response response = BookingAPI.post(bookingRequest);
+        VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_200.code, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
 
-        System.out.println("Response Body :" + response.getBody().prettyPrint());
+        String actual = response.then().contentType(ContentType.JSON).extract().path("booking.firstname");
+        VerificationManager.assertEquals(actual, bookingRequest.getFirstname(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
 
-        assertStatusCode(response.statusCode(),StatusCode.CODE_200);
+        //assertBookingResponse(pojo.response.as(BookingResponse.class),bookingRequest);
+    }
 
-        assertBookingResponse(response.as(BookingResponse.class),bookingRequest);
+    @Test(groups = {"SMOKE","SANITY","REGRESSION"}, description = "I should not be able to create booking")
+    public void shouldNotBeAbleToCreateBooking(){
+
+        Booking bookingRequest = bookingRequestBuilder();
+        Response response = BookingAPI.post(bookingRequest);
+        VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_400.code, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
+
+        String actual = response.then().contentType(ContentType.JSON).extract().path("booking.firstname");
+        VerificationManager.assertEquals(actual, "invalid value",FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
+
+        //assertBookingResponse(pojo.response.as(BookingResponse.class),bookingRequest);
     }
 
     private Booking bookingRequestBuilder() {
@@ -43,11 +55,7 @@ public class BookingTest extends BaseTest {
                 additionalneeds("Lunch").build();
     }
 
-    private void assertStatusCode(int actualStatusCode, StatusCode statusCode){
-        assertThat(actualStatusCode, equalTo(statusCode.code));
-    }
-
     private void assertBookingResponse(BookingResponse response, Booking request) {
-        assertThat(response.getBooking().getFirstname(),equalTo(request.getFirstname()));
+        VerificationManager.assertEquals(response.getBooking().getFirstname(),request.getFirstname(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
     }
 }

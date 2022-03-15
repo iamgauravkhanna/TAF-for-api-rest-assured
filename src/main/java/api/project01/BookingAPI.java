@@ -2,7 +2,7 @@ package api.project01;
 
 import api.RestOperations;
 import io.restassured.response.Response;
-import request.pojo.project01.Booking;
+import pojo.request.project01.Booking;
 
 public class BookingAPI {
 

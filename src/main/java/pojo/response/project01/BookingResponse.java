@@ -1,12 +1,11 @@
-package response.project01;
+package pojo.response.project01;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
-import request.pojo.project01.Booking;
+import pojo.request.project01.Booking;
 
 @ToString
-@AllArgsConstructor
 @Getter
 @Setter
 @Value
