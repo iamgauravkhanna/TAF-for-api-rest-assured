@@ -1,13 +1,14 @@
 package pojo.request.project01;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
+import lombok.extern.jackson.Jacksonized;
 
-@EqualsAndHashCode
-@ToString
+@Builder
 @Getter
 @Setter
-@Builder
-@Data
+@Jacksonized
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDates {
 
     private String checkin;

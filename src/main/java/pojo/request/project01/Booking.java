@@ -4,11 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.extern.jackson.Jacksonized;
 
-@ToString
+@Builder
 @Getter
 @Setter
-@Builder
-@Value
 @Jacksonized
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Booking {

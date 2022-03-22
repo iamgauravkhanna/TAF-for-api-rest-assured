@@ -7,6 +7,7 @@ import base.BaseTest;
 import constants.FrameworkConstants;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import logger.MyLogger;
 import org.testng.annotations.Test;
 import pojo.request.project01.Booking;
 import pojo.request.project01.BookingDates;
@@ -22,24 +23,7 @@ public class BookingTest extends BaseTest {
         Booking bookingRequest = bookingRequestBuilder();
         Response response = BookingAPI.post(bookingRequest);
         VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_200.code, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
-
-        String actual = response.then().contentType(ContentType.JSON).extract().path("booking.firstname");
-        VerificationManager.assertEquals(actual, bookingRequest.getFirstname(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
-
-        //assertBookingResponse(pojo.response.as(BookingResponse.class),bookingRequest);
-    }
-
-    @Test(groups = {"SMOKE","SANITY","REGRESSION"}, description = "I should not be able to create booking")
-    public void shouldNotBeAbleToCreateBooking(){
-
-        Booking bookingRequest = bookingRequestBuilder();
-        Response response = BookingAPI.post(bookingRequest);
-        VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_400.code, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
-
-        String actual = response.then().contentType(ContentType.JSON).extract().path("booking.firstname");
-        VerificationManager.assertEquals(actual, "invalid value",FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
-
-        //assertBookingResponse(pojo.response.as(BookingResponse.class),bookingRequest);
+        assertBookingResponse(response.as(BookingResponse.class),bookingRequest);
     }
 
     private Booking bookingRequestBuilder() {
@@ -57,5 +41,6 @@ public class BookingTest extends BaseTest {
 
     private void assertBookingResponse(BookingResponse response, Booking request) {
         VerificationManager.assertEquals(response.getBooking().getFirstname(),request.getFirstname(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
+        VerificationManager.assertEquals(response.getBooking().getBookingdates().getCheckin(),request.getBookingdates().getCheckin(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
     }
 }

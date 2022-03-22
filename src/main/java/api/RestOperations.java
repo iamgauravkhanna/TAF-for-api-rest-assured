@@ -1,5 +1,6 @@
 package api;
 
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 
 import logger.MyLogger;
@@ -22,6 +23,21 @@ public class RestOperations {
                 response();
 
         printDetailsInExtentReport(requestBody,response);
+
+        return response;
+    }
+
+    public static Response get(String path){
+
+        Response response = given().
+                when().
+                get(path).
+                then().
+                spec(getResponseSpec()).
+                extract().
+                response();
+
+        printDetailsInExtentReport("NA",response);
 
         return response;
     }
