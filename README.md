@@ -2,7 +2,7 @@
 
 TAF (Test Automation Framework) for API using Rest Assured
 
-To Run Tests
+# To Run Tests
 ---
 
 ```bash
