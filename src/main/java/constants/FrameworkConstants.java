@@ -12,5 +12,7 @@ public class FrameworkConstants {
 
     public static final String ASSERTION_FOR_RESPONSE_HEADER = "Assertion for Response Headers";
 
+    public static final String ASSERTION_FOR_NON_NULLABLE_FIELD = "Assertion for Non Nullable Field";
+
     public static final String ASSERTION_FOR_RESPONSE_CUSTOM_FIELD = "Assertion for Response Custom Field";
 }
