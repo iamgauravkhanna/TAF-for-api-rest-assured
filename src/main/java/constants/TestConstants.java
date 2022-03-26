@@ -2,7 +2,7 @@ package constants;
 
 import java.io.File;
 
-public class FrameworkConstants {
+public class TestConstants {
 
     public static final String DIRECTORY_ENV_CONFIG = "/src/main/resources/";
 

@@ -5,9 +5,9 @@ import reporting.ExtentTestManager;
 
 public class MyLogger {
 
-    private static Logger Log = Logger.getLogger("CustomLogger");
+    private static Logger Log = Logger.getLogger("MyLogger");
 
-    public static void INFOSTEP(String message) {
+    public static void INFO_STEP(String message) {
         INFO(message);
         ExtentTestManager.getTest().info(message);
     }

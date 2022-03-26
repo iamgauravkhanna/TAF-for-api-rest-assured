@@ -4,10 +4,8 @@ import api.project01.BookingAPI;
 import api.project01.StatusCode;
 import assertions.VerificationManager;
 import base.BaseTest;
-import constants.FrameworkConstants;
-import io.restassured.http.ContentType;
+import constants.TestConstants;
 import io.restassured.response.Response;
-import logger.MyLogger;
 import org.testng.annotations.Test;
 import pojo.request.project01.Booking;
 import pojo.request.project01.BookingDates;
@@ -22,7 +20,7 @@ public class BookingTest extends BaseTest {
 
         Booking bookingRequest = bookingRequestBuilder();
         Response response = BookingAPI.post(bookingRequest);
-        VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_200.code, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
+        VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_200.code, TestConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
         assertBookingResponse(response.as(BookingResponse.class),bookingRequest);
     }
 
@@ -40,7 +38,7 @@ public class BookingTest extends BaseTest {
     }
 
     private void assertBookingResponse(BookingResponse response, Booking request) {
-        VerificationManager.assertEquals(response.getBooking().getFirstname(),request.getFirstname(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
-        VerificationManager.assertEquals(response.getBooking().getBookingdates().getCheckin(),request.getBookingdates().getCheckin(),FrameworkConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
+        VerificationManager.assertEquals(response.getBooking().getFirstname(),request.getFirstname(), TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
+        VerificationManager.assertEquals(response.getBooking().getBookingdates().getCheckin(),request.getBookingdates().getCheckin(), TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
     }
 }

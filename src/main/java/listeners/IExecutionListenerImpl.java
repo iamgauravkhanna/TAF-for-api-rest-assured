@@ -1,6 +1,6 @@
 package listeners;
 
-import constants.FrameworkConstants;
+import constants.TestConstants;
 import logger.MyLogger;
 import org.apache.log4j.PropertyConfigurator;
 import org.testng.IExecutionListener;
@@ -24,7 +24,7 @@ public class IExecutionListenerImpl implements IExecutionListener {
 
         ExtentManager.getInstance();
 
-        PropertyConfigurator.configure(FrameworkConstants.log4jPath);
+        PropertyConfigurator.configure(TestConstants.log4jPath);
         MyLogger.INFO("Executed Started");
     }
 

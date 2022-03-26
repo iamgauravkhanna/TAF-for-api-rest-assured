@@ -1,14 +1,15 @@
 package assertions;
 
+import constants.TestConstants;
 import org.testng.Assert;
 import logger.MyLogger;
 
 public class VerificationManager {
 
-    public static void assertEquals(Object actual, Object expected,String message){
+    public static void assertEquals(Object actual, Object expected, String message) {
         try {
             Assert.assertEquals(actual, expected, message);
-         MyLogger.PASS(
+            MyLogger.PASS(
                     message + "   |   <b><i>Actual: </i> </b>" + actual + " and <b><i> Expected: </i> </b>" + expected);
         } catch (AssertionError assertionError) {
             MyLogger.FAIL(
@@ -17,15 +18,16 @@ public class VerificationManager {
         }
     }
 
-    public static void assertNotNull(Object id, String message) {
-        try{
+    public static void assertNotNull(Object id, String expected) {
+        try {
             Assert.assertNotNull(id);
             MyLogger.PASS(
-                    message + "   |   <b><i>Actual: </i> </b>" + "Object was not null" + " and <b><i> Expected: </i> </b>" + "Object should not be null");
-        }        catch (Exception exception ){
+                    TestConstants.ASSERTION_FOR_NON_NULLABLE_FIELD + "   |   <b><i>Actual: </i> </b>" + "Object was not null" + " and <b><i> Expected: </i> </b>" + expected);
+        } catch (AssertionError assertionError) {
+
             MyLogger.FAIL(
-                    message + "   |   <b><i>Actual: </i> </b>" + "Object was not null" + " and <b><i> Expected: </i> </b>" + "Object should not be null");
-            Assert.fail(message);
+                    TestConstants.ASSERTION_FOR_NON_NULLABLE_FIELD + "   |   <b><i>Actual: </i> </b>" + "Object was null" + " and <b><i> Expected: </i> </b>" + expected);
+            Assert.fail(expected);
         }
     }
 }

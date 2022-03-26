@@ -1,41 +1,40 @@
 package project04;
 
+import api.RestOperations;
 import assertions.VerificationManager;
-import constants.FrameworkConstants;
+import base.BaseTest;
+import constants.TestConstants;
+import filters.RestAssuredRequestFilter;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import org.testng.Assert;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 
-public class GoRestTest {
+public class GoRestTest extends BaseTest {
 
-    private static final String BASE_URI= "https://gorest.co.in/public/v2/users";
+    private static final String BASE_URI = "https://gorest.co.in/public/v2/users";
 
-    @Test
+    @Test(description = "Test to validate user details")
     public void validateUserDetailsJsonSchema() {
-        ValidatableResponse response = given()
+
+        RequestSpecification requestSpecification = given()
+                .filter(new RestAssuredRequestFilter())
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(BASE_URI)
-                .when()
-                .get("/2539")
-                .then();
+                .baseUri(BASE_URI).
+                when();
 
-        System.out.println("GET Response:\n" + response.extract().body().asString());
+        Response response = RestOperations.get(requestSpecification,"/2539");
 
-        // Verify the status code
-        Assert.assertEquals(response.extract().statusCode(), 200);
-        VerificationManager.assertEquals(response.extract().statusCode(), 200, FrameworkConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
+        ValidatableResponse validatableResponse = response.then();
 
-        VerificationManager.assertNotNull(response.extract().body().jsonPath().get("id1"),FrameworkConstants.ASSERTION_FOR_NON_NULLABLE_FIELD);
-        // Verify the response attributes
-       // assertNotNull("'id' should not be null", response.extract().body().jsonPath().get("id"));
-        assertNotNull("'name' should not be null", response.extract().body().jsonPath().get("name"));
-        assertNotNull("'email' should not be null", response.extract().body().jsonPath().get("email"));
+        VerificationManager.assertEquals(validatableResponse.extract().statusCode(), 200, TestConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
+        VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("id"), "'id' should not be null");
+        VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("name"), "'name' should not be null");
+        VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("email1"), "'email' should not be null");
     }
-
 }
