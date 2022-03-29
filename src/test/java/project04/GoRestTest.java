@@ -1,6 +1,7 @@
 package project04;
 
 import api.RestOperations;
+import api.SpecificationBuilder;
 import assertions.VerificationManager;
 import base.BaseTest;
 import constants.TestConstants;
@@ -9,28 +10,26 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import logger.MyLogger;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
+import static constants.TestConstants.SCHEMA_PATH;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.testng.AssertJUnit.assertNotNull;
 
 public class GoRestTest extends BaseTest {
 
-    private static final String BASE_URI = "https://gorest.co.in/public/v2/users";
-
     @Test(description = "Test to validate user details")
     public void validateUserDetailsJsonSchema() {
 
-        RequestSpecification requestSpecification = given()
-                .filter(new RestAssuredRequestFilter())
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .baseUri(BASE_URI).
-                when();
-
+        RequestSpecification requestSpecification = SpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification,"/2539");
-
         ValidatableResponse validatableResponse = response.then();
+        //String userSchemaPath = SCHEMA_PATH + "/user-schema.json" ;
+        validatableResponse.body(matchesJsonSchemaInClasspath("user-schema.json"));
 
         VerificationManager.assertEquals(validatableResponse.extract().statusCode(), 200, TestConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
         VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("id"), "'id' should not be null");

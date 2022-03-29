@@ -1,17 +1,16 @@
 package utils;
 
-import org.testng.internal.PropertyUtils;
-
 import java.util.Properties;
+
+import static constants.TestConstants.RESOURCES_PATH;
 
 public class DataLoader {
 
-    private static final String RESOURCES_PATH = System.getProperty("user.dir") + "/src/test/resources/";
     private Properties properties;
     private static DataLoader dataLoader;
 
     private DataLoader() {
-        properties = PropertyUtil.propertyLoader(RESOURCES_PATH + "data.properties");
+        properties = PropertyUtil.propertyLoader(RESOURCES_PATH + "/config.properties");
     }
 
     public static DataLoader getInstance() {
@@ -19,5 +18,9 @@ public class DataLoader {
             dataLoader = new DataLoader();
         }
         return dataLoader;
+    }
+
+    public String getProperty(String key){
+        return properties.getProperty(key);
     }
 }
