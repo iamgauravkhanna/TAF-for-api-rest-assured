@@ -8,7 +8,7 @@ public class TestConstants {
 
     public static final String RESOURCES_PATH = System.getProperty("user.dir") + DIRECTORY_ENV_CONFIG + System.getProperty("testEnvironment");
 
-    public static final String SCHEMA_PATH = System.getProperty("user.dir") + "/src/test/resources/schema/" +  System.getProperty("testEnvironment");
+    public static final String SCHEMA_PATH = "src/test/resources/schema/" +  System.getProperty("testEnvironment");
 
     public static final String log4jPath = System.getProperty("user.dir") + File.separator + "log4j.properties";
 
