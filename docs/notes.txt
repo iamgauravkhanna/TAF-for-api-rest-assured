@@ -1,0 +1,1 @@
+- Service Classes should be build for each project which will contains specs, action specific to that API.
