@@ -39,7 +39,7 @@ public class GoRestTest extends BaseTest {
     }
 
     @Test(description = "Test to validate user details for multiple users",enabled = true)
-    public void validateUserDetailsMultiple() {
+    public void validateUserDetailsJsonSchemaArray() {
         RequestSpecification requestSpecification = SpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification, "/");
         ValidatableResponse validatableResponse = response.then();

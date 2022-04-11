@@ -13,7 +13,8 @@
 <!--            <class name="project01.BookingTest" />-->
 <!--            <class name="project02.CountriesTest"/>-->
 <!--            <class name="project03.UserTest"></class>-->
-            <class name="project04.GoRestTest"></class>
+<!--            <class name="project04.GoRestTest"></class>-->
+            <class name="project05.FileUploadTest"></class>
         </classes>
     </test>
 
