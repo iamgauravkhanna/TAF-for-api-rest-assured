@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import logger.MyLogger;
 
-import static api.SpecificationBuilder.*;
+import static api.RequestSpecificationBuilder.*;
 
 import static io.restassured.RestAssured.given;
 

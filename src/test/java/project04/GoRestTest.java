@@ -1,21 +1,15 @@
 package project04;
 
 import api.RestOperations;
-import api.SpecificationBuilder;
+import api.RequestSpecificationBuilder;
 import assertions.VerificationManager;
 import base.BaseTest;
 import constants.TestConstants;
-import filters.RestAssuredRequestFilter;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import logger.MyLogger;
 import org.testng.annotations.Test;
 
-import java.io.File;
-
-import static constants.TestConstants.SCHEMA_PATH;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasItems;
@@ -25,7 +19,7 @@ public class GoRestTest extends BaseTest {
 
     @Test(description = "Test to validate user details", enabled = true)
     public void validateUserDetailsJsonSchema() {
-        RequestSpecification requestSpecification = SpecificationBuilder.getRequestSpecWithFilters();
+        RequestSpecification requestSpecification = RequestSpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification, "/2539");
         ValidatableResponse validatableResponse = response.then();
 //        String userSchemaPath = SCHEMA_PATH + "/user-schema.json" ;
@@ -40,7 +34,7 @@ public class GoRestTest extends BaseTest {
 
     @Test(description = "Test to validate user details for multiple users",enabled = true)
     public void validateUserDetailsJsonSchemaArray() {
-        RequestSpecification requestSpecification = SpecificationBuilder.getRequestSpecWithFilters();
+        RequestSpecification requestSpecification = RequestSpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification, "/");
         ValidatableResponse validatableResponse = response.then();
         validatableResponse.body(matchesJsonSchemaInClasspath("user-schema-array.json"));

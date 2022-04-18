@@ -1,4 +1,4 @@
-package api.project01;
+package api;
 
 public enum StatusCode {
     CODE_200(200, ""),

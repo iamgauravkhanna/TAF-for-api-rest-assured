@@ -8,7 +8,7 @@ import io.restassured.specification.FilterableResponseSpecification;
 import logger.MyLogger;
 import org.apache.log4j.Logger;
 
-public class RestAssuredRequestFilter implements Filter {
+public class RequestFilter implements Filter {
 
     @Override
     public Response filter(FilterableRequestSpecification requestSpec, FilterableResponseSpecification responseSpec, FilterContext ctx) {

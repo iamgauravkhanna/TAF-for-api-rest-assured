@@ -1,10 +1,7 @@
 package project05;
 
-import api.SpecificationBuilder;
 import base.BaseTest;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.apache.http.entity.mime.MIME;
 import org.testng.annotations.Test;
 
 import java.io.File;

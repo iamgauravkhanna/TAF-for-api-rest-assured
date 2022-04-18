@@ -1,27 +1,26 @@
 package api;
 
-import filters.RestAssuredRequestFilter;
+import filters.RequestFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import utils.DataLoader;
-import utils.PropertyUtil;
 
-public class SpecificationBuilder {
+public class RequestSpecificationBuilder {
 
-    public static RequestSpecification getRequestSpec(){
+    public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder().
-                setBaseUri("https://restful-booker.herokuapp.com").
-                //setBasePath(EndPoints.BOOKINGS).
-                        setContentType(ContentType.JSON).
+                setBaseUri("https://restful-booker.herokuapp.com")
+                .addFilter(new RequestFilter())
+                .setContentType(ContentType.JSON).
                         build();
     }
 
-    public static RequestSpecification getRequestSpecWithFilters(){
+    public static RequestSpecification getRequestSpecWithFilters() {
         return new RequestSpecBuilder()
-                .addFilter(new RestAssuredRequestFilter())
+                .addFilter(new RequestFilter())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .setBaseUri(DataLoader.getInstance().getProperty("base.url"))
@@ -29,7 +28,7 @@ public class SpecificationBuilder {
                 .build();
     }
 
-    public static ResponseSpecification getResponseSpec(){
+    public static ResponseSpecification getResponseSpec() {
         return new ResponseSpecBuilder().
                 build();
     }
