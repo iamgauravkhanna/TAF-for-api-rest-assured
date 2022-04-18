@@ -1,2 +1,4 @@
 - Service Classes should be build for each project which will contains specs, action specific to that API.
 - Implement all types of Filter
+
+http://makeseleniumeasy.com/rest-assured-tutorials/

@@ -5,7 +5,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.response.Response;
 
 import io.restassured.specification.RequestSpecification;
-import logger.MyLogger;
+import logger.TestLogger;
 
 import static api.RequestSpecificationBuilder.*;
 
@@ -49,11 +49,11 @@ public class RestOperations {
     }
 
     private static void printDetailsInExtentReport(Object request, Response response) {
-        MyLogger.INFO_STEP("<details><summary><i><font color=black> Request details: </font></i>" + "</summary>"
+        TestLogger.INFO_STEP("<details><summary><i><font color=black> Request details: </font></i>" + "</summary>"
                 + "<pre>" + request.toString() + "</pre>" + "</details> \n");
 
-        MyLogger.INFO_STEP("<details><summary><i><font color=black> Response details: </font></i>" + "</summary>"
+        TestLogger.INFO_STEP("<details><summary><i><font color=black> Response details: </font></i>" + "</summary>"
                 + "<pre>" + response.asString() + "</pre>" + "</details> \n");
-        MyLogger.INFO_STEP(MarkupHelper.createCodeBlock(response.asString(), CodeLanguage.JSON));
+        TestLogger.INFO_STEP(MarkupHelper.createCodeBlock(response.asString(), CodeLanguage.JSON));
     }
 }

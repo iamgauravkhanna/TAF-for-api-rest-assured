@@ -8,10 +8,9 @@ import constants.TestConstants;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
-import logger.MyLogger;
+import logger.TestLogger;
 import org.testng.annotations.Test;
 import pojo.request.project01.Booking;
-import pojo.request.project01.BookingDates;
 import pojo.response.project01.BookingResponse;
 
 import java.util.concurrent.TimeUnit;
@@ -31,12 +30,12 @@ public class BookingTest extends BaseTest {
         VerificationManager.assertEquals(bookingResponse.getBooking().getFirstname(),request.getFirstname(), TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
         VerificationManager.assertEquals(bookingResponse.getBooking().getBookingdates().getCheckin(),request.getBookingdates().getCheckin(), TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
 
-        MyLogger.INFO_STEP("Response Time : " + response.getTimeIn(TimeUnit.MILLISECONDS));
-        MyLogger.INFO_STEP("Status Line :" + response.statusLine());
+        TestLogger.INFO_STEP("Response Time : " + response.getTimeIn(TimeUnit.MILLISECONDS));
+        TestLogger.INFO_STEP("Status Line :" + response.statusLine());
 
         Headers allHeaders = response.getHeaders();
         for(Header header : allHeaders) {
-            MyLogger.INFO("Key: " + header.getName() + " Value: " + header.getValue());
+            TestLogger.INFO("Key: " + header.getName() + " Value: " + header.getValue());
         }
     }
 
