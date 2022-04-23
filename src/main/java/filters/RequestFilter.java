@@ -10,14 +10,18 @@ import logger.TestLogger;
 public class RequestFilter implements Filter {
 
     @Override
-    public Response filter(FilterableRequestSpecification requestSpec, FilterableResponseSpecification responseSpec, FilterContext ctx) {
-        Response response = ctx.next(requestSpec, responseSpec);
+    public Response filter(FilterableRequestSpecification filterableRequestSpecification, FilterableResponseSpecification filterableResponseSpecification, FilterContext filterContext) {
+        Response response = filterContext.next(filterableRequestSpecification, filterableResponseSpecification);
+
         if (response.statusCode() != 200) {
-            TestLogger.ERROR(requestSpec.getMethod() + " " + requestSpec.getURI() + " => " +
+            TestLogger.ERROR(filterableRequestSpecification.getMethod() + " " + filterableRequestSpecification.getURI() + " => " +
                     response.getStatusCode() + " " + response.getStatusLine());
         }
-        TestLogger.INFO(requestSpec.getMethod() + " " + requestSpec.getURI() + " \n Request Body => " + requestSpec.getBody() + "\n Response Status => " +
+
+        TestLogger.INFO(filterableRequestSpecification.getMethod() + " " + filterableRequestSpecification.getURI() +
+                " \n Request Body => " + filterableRequestSpecification.getBody() + "\n Response Status => " +
                 response.getStatusCode() + " " + response.getStatusLine() + " \n Response Body => " + response.getBody().prettyPrint());
+
         return response;
     }
 }

@@ -6,7 +6,7 @@ import reporting.ExtentTestManager;
 
 public class TestLogger {
 
-    private static Logger Log = Logger.getLogger("MyLogger");
+    private static Logger Log = Logger.getLogger("TestLogger");
 
     public static void INFO_STEP(String message) {
         INFO(message);

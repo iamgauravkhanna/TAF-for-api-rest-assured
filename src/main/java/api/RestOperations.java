@@ -54,6 +54,7 @@ public class RestOperations {
 
         TestLogger.INFO_STEP("<details><summary><i><font color=black> Response details: </font></i>" + "</summary>"
                 + "<pre>" + response.asString() + "</pre>" + "</details> \n");
+
         TestLogger.INFO_STEP(MarkupHelper.createCodeBlock(response.asString(), CodeLanguage.JSON));
     }
 }

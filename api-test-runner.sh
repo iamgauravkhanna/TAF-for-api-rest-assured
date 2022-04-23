@@ -1,4 +1,4 @@
 mvn clean install test \
--DgroupToRun=tc003 \
--DtestEnvironment=project05 \
--DSuiteFilePath=src/test/resources/suites/master.xml
+-DtestEnvironment=project02 \
+-DSuiteFilePath=src/test/resources/suites/project02.xml \
+-DgroupToRun=tc003

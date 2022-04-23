@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Regression Suite - All Projects">
+<suite name="Regression Suite - Project 01">
     
     <listeners>
         <listener class-name="listeners.ITestListenerImpl"></listener>
@@ -11,13 +11,6 @@
           thread-count="1">
         <packages>
             <package name="project01"></package>
-        </packages>
-    </test>
-
-    <test name="Project 02 - Test 01" parallel="methods"
-          thread-count="1">
-        <packages>
-            <package name="project02"></package>
         </packages>
     </test>
 
