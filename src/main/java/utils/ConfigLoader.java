@@ -4,18 +4,18 @@ import java.util.Properties;
 
 import static constants.TestConstants.RESOURCES_PATH;
 
-public class DataLoader {
+public class ConfigLoader {
 
     private Properties properties;
-    private static DataLoader dataLoader;
+    private static ConfigLoader dataLoader;
 
-    private DataLoader() {
+    private ConfigLoader() {
         properties = PropertyUtil.propertyLoader(RESOURCES_PATH + "/config.properties");
     }
 
-    public static DataLoader getInstance() {
+    public static ConfigLoader getInstance() {
         if (dataLoader == null) {
-            dataLoader = new DataLoader();
+            dataLoader = new ConfigLoader();
         }
         return dataLoader;
     }

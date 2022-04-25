@@ -37,6 +37,13 @@ public class VerificationManager {
     }
 
     public static void assertResponse(ValidatableResponse validatableResponse, String schemaPath){
-        validatableResponse.body(matchesJsonSchema(new File(schemaPath)));
+        try {
+            validatableResponse.body(matchesJsonSchema(new File(schemaPath)));
+            TestLogger.INFO_STEP("Scheme Verification was Successful");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

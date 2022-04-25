@@ -22,29 +22,27 @@ import static org.testng.AssertJUnit.assertNotNull;
 
 public class GoRestTest extends BaseTest {
 
-    @Test(description = "Test to validate user details", enabled = true)
+    @Test(description = "Test to validate user details schema", enabled = true)
     public void validateUserDetailsJsonSchema() {
         RequestSpecification requestSpecification = RequestSpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification, "/users/2539");
         ValidatableResponse validatableResponse = response.then();
 
-        //VerificationManager(validatableResponse,SCHEMA_PATH + "/user-schema.json");
+        VerificationManager.assertResponse(validatableResponse,SCHEMA_PATH + "/user-schema.json");
         VerificationManager.assertEquals(validatableResponse.extract().statusCode(), 200, TestConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
         VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("id"), "'id' should not be null");
         VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("name"), "'name' should not be null");
         VerificationManager.assertNotNull(validatableResponse.extract().body().jsonPath().get("email"), "'email' should not be null");
     }
 
-    @Test(description = "Test to validate user details for multiple users",enabled = true)
+    @Test(description = "Test to validate user details schema for multiple users",enabled = true)
     public void validateUserDetailsJsonSchemaArray() {
         RequestSpecification requestSpecification = RequestSpecificationBuilder.getRequestSpecWithFilters();
         Response response = RestOperations.get(requestSpecification, "/users");
         ValidatableResponse validatableResponse = response.then();
-        validatableResponse.body(matchesJsonSchemaInClasspath("schema/project04/user-schema-array.json"));
-        validatableResponse.body("findAll {gender='female'}.name", hasItems("Niro Ahuja"));
-    }
 
-    // TODO
-    // File Upload Tests
+        VerificationManager.assertResponse(validatableResponse,SCHEMA_PATH + "/user-schema-array.json");
+        validatableResponse.body("findAll {gender='female'}.name", hasItems(" Geetanjali Trivedi"));
+    }
 
 }

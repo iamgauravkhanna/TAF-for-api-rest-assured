@@ -7,13 +7,13 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import utils.DataLoader;
+import utils.ConfigLoader;
 
 public class RequestSpecificationBuilder {
 
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder().
-                setBaseUri(DataLoader.getInstance().get(TestConstants.BASE_URL))
+                setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
                 .addFilter(new RequestFilter())
                 .setContentType(ContentType.JSON).
                         build();
@@ -24,7 +24,7 @@ public class RequestSpecificationBuilder {
                 .addFilter(new RequestFilter())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .setBaseUri(DataLoader.getInstance().get(TestConstants.BASE_URL))
+                .setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
                 .build();
     }
 
