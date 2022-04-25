@@ -20,7 +20,7 @@ public class DataLoader {
         return dataLoader;
     }
 
-    public String getProperty(String key){
+    public String get(String key){
         return properties.getProperty(key);
     }
 }

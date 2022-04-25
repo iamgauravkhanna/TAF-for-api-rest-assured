@@ -1,5 +1,6 @@
 package api;
 
+import constants.TestConstants;
 import filters.RequestFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -12,7 +13,7 @@ public class RequestSpecificationBuilder {
 
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder().
-                setBaseUri("https://restful-booker.herokuapp.com")
+                setBaseUri(DataLoader.getInstance().get(TestConstants.BASE_URL))
                 .addFilter(new RequestFilter())
                 .setContentType(ContentType.JSON).
                         build();
@@ -23,8 +24,7 @@ public class RequestSpecificationBuilder {
                 .addFilter(new RequestFilter())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .setBaseUri(DataLoader.getInstance().getProperty("base.url"))
-                .setBasePath(DataLoader.getInstance().getProperty("users"))
+                .setBaseUri(DataLoader.getInstance().get(TestConstants.BASE_URL))
                 .build();
     }
 

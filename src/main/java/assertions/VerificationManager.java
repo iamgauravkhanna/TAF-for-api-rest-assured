@@ -1,8 +1,13 @@
 package assertions;
 
 import constants.TestConstants;
+import io.restassured.response.ValidatableResponse;
 import org.testng.Assert;
 import logger.TestLogger;
+
+import java.io.File;
+
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 
 public class VerificationManager {
 
@@ -29,5 +34,9 @@ public class VerificationManager {
                     TestConstants.ASSERTION_FOR_NON_NULLABLE_FIELD + "   |   <b><i>Actual: </i> </b>" + "Object was null" + " and <b><i> Expected: </i> </b>" + expected);
             Assert.fail(expected);
         }
+    }
+
+    public static void assertResponse(ValidatableResponse validatableResponse, String schemaPath){
+        validatableResponse.body(matchesJsonSchema(new File(schemaPath)));
     }
 }
