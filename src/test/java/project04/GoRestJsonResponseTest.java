@@ -20,7 +20,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.hasItems;
 import static org.testng.AssertJUnit.assertNotNull;
 
-public class GoRestTest extends BaseTest {
+public class GoRestJsonResponseTest extends BaseTest {
 
     @Test(description = "Test to validate user details schema", enabled = true)
     public void validateUserDetailsJsonSchema() {

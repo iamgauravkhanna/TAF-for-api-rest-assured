@@ -14,8 +14,7 @@ public class IExecutionListenerImpl implements IExecutionListener {
     @Override
     public void onExecutionStart() {
 
-        String outputDirectory;
-        outputDirectory = System.getProperty("user.dir") + File.separator + "reports" + File.separator
+        String outputDirectory = System.getProperty("user.dir") + File.separator + "reports" + File.separator
                 + "test-reports-" + JavaUtil.getCurrentTimeStamp();
 
         JavaUtil.createDirectory(outputDirectory);
@@ -25,12 +24,13 @@ public class IExecutionListenerImpl implements IExecutionListener {
         ExtentManager.getInstance();
 
         PropertyConfigurator.configure(TestConstants.log4jPath);
-        TestLogger.INFO("Executed Started");
+
+        TestLogger.INFO("Execution Started");
     }
 
     @Override
     public void onExecutionFinish() {
-        TestLogger.INFO("TestNG has finished, took around");
+        TestLogger.INFO("Execution has finished, took around");
         ExtentManager.getInstance().flush();
     }
 }

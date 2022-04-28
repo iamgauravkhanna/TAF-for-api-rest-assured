@@ -20,6 +20,7 @@ public class FileUploadTest extends BaseTest {
                 .multiPart("file",filetoUpload, "multipart/form-data")
                 .post("https://the-internet.herokuapp.com/upload")
                 .thenReturn();
+
         response.prettyPrint();
     }
 
@@ -28,6 +29,7 @@ public class FileUploadTest extends BaseTest {
         byte[] response = given()
                 .get("https://avatars.githubusercontent.com/u/14772120")
                 .asByteArray();
+
         System.out.println("Content Length : " + response.length);
     }
 }

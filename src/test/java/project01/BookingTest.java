@@ -15,6 +15,7 @@ import pojo.request.project01.Booking;
 import pojo.response.project01.BookingResponse;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -42,8 +43,9 @@ public class BookingTest extends BaseTest {
 
         Map<String,Object> responseBody = null;
         responseBody = response.as(new TypeRef<Map<String, Object>>() {});
-        System.out.println("Booking id is : "+responseBody.get("bookingid"));
-
+        Set<String> key = responseBody.keySet();
+        for(String keySet : key){
+            System.out.println(keySet + " ==> " + responseBody.get(keySet));
+        }
     }
-
 }

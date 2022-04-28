@@ -14,7 +14,10 @@ import utils.ConfigLoader;
 
 import java.util.List;
 
+import static constants.TestConstants.SCHEMA_PATH;
 import static io.restassured.RestAssured.given;
+
+import static io.restassured.matcher.RestAssuredMatchers.*;
 
 public class XMLResponseTest extends BaseTest {
 
@@ -41,5 +44,7 @@ public class XMLResponseTest extends BaseTest {
         XmlPath xmlPath = response.xmlPath();
         List<String> list = xmlPath.getList("courses.subject.name",String.class);
         TestLogger.INFO(list.toString());
+
+        response.then().body(matchesXsd(SCHEMA_PATH + "/courses.xsd"));
     }
 }

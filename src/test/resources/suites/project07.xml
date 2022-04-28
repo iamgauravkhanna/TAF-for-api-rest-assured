@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression Suite - Project 07">
+
+    <listeners>
+        <listener class-name="listeners.ITestListenerImpl"></listener>
+        <listener class-name="listeners.IExecutionListenerImpl"></listener>
+    </listeners>
+
+    <test name="Project 07 - Test 01" parallel="methods" thread-count="1">
+        <packages>
+            <package name="project07"></package>
+        </packages>
+    </test>
+
+</suite>
