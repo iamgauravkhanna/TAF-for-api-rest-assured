@@ -1,6 +1,6 @@
 package project01;
 
-import api.project01.services.BookingAPI;
+import api.project01.services.BookingService;
 import api.StatusCode;
 import assertions.VerificationManager;
 import base.BaseTest;
@@ -25,8 +25,8 @@ public class BookingTest extends BaseTest {
     @Test(groups = {"SMOKE","SANITY","REGRESSION"}, description = "I should be able to create booking",enabled = true)
     public void shouldBeAbleToCreateBooking(){
 
-        Booking request = BookingAPI.bookingRequestBuilder();
-        Response response = BookingAPI.post(request);
+        Booking request = BookingService.bookingRequestBuilder();
+        Response response = BookingService.createBooking(request);
 
         VerificationManager.assertEquals(response.statusCode(),StatusCode.CODE_200.code, TestConstants.ASSERTION_FOR_RESPONSE_STATUS_CODE);
         BookingResponse bookingResponse = response.as(BookingResponse.class) ;

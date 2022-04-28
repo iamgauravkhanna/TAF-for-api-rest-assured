@@ -6,11 +6,21 @@ import io.restassured.response.Response;
 import pojo.request.project01.Booking;
 import pojo.request.project01.BookingDates;
 
-public class BookingAPI {
+public class BookingService {
 
-    public static Response post(Booking bookingRequest){
+    public static Response createBooking(Booking bookingRequest){
         return RestOperations.post(EndPoints.BOOKINGS,bookingRequest);
     }
+
+    public static void getBooking(int bookingId){}
+
+    public static void listBooking(){}
+
+    public static void updateBooking(){}
+
+    public static void deleteBooking(){}
+
+    public static void createAuthToken(String username, String password){}
 
     public static Booking bookingRequestBuilder() {
         return Booking.builder().
