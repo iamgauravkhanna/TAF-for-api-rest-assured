@@ -7,6 +7,7 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Getter
 @Setter
+@ToString
 @Jacksonized
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Booking {

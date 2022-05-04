@@ -9,7 +9,7 @@ import java.io.File;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 
-public class VerificationManager {
+public class AssertionManager {
 
     public static void assertEquals(Object actual, Object expected, String message) {
         try {

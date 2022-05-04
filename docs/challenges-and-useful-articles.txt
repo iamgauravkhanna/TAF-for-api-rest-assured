@@ -1,2 +1,2 @@
-- REST Assured Tutorials
+# REST Assured Tutorials
 - http://makeseleniumeasy.com/rest-assured-tutorials/

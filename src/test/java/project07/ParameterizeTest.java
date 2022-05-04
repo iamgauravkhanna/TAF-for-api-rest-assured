@@ -1,30 +1,18 @@
 package project07;
 
-import assertions.VerificationManager;
+import assertions.AssertionManager;
 import base.BaseTest;
 import constants.TestConstants;
-import filters.RequestFilter;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.path.xml.XmlPath;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
 import logger.TestLogger;
-import org.hamcrest.Matchers;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.CSVUtil;
-import utils.ConfigLoader;
-
-import java.util.List;
 
 import static constants.TestConstants.RESOURCES_PATH;
-import static constants.TestConstants.SCHEMA_PATH;
 import static io.restassured.RestAssured.given;
 import static io.restassured.matcher.RestAssuredMatchers.matchesXsd;
-import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ParameterizeTest extends BaseTest {
 
@@ -50,7 +38,7 @@ public class ParameterizeTest extends BaseTest {
                 .get("https://api.zippopotam.us/{countryCode}/{zipCode}")
                 .then();
 
-        VerificationManager.assertEquals(validatableResponse.extract().body().jsonPath().get("places.'place name'[0]"), place, TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
+        AssertionManager.assertEquals(validatableResponse.extract().body().jsonPath().get("places.'place name'[0]"), place, TestConstants.ASSERTION_FOR_RESPONSE_CUSTOM_FIELD);
     }
 
     @DataProvider(name = "countryAndZipCode")

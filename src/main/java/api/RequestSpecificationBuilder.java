@@ -15,8 +15,8 @@ public class RequestSpecificationBuilder {
         return new RequestSpecBuilder().
                 setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
                 .addFilter(new RequestFilter())
-                .setContentType(ContentType.JSON).
-                        build();
+                .setAccept(ContentType.ANY)
+                .build();
     }
 
     public static RequestSpecification getRequestSpecWithFilters() {
