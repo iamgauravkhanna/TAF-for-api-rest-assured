@@ -12,7 +12,7 @@ import java.io.FileWriter;
 
 public class CountriesTest extends BaseTest {
 
-    @Test(description = "Json Path Example", enabled = false)
+    @Test(description = "Json Path Example", enabled = true)
     public void shouldBeAbleToGetCountryDetails() {
         Response response = RestOperations.get("https://restcountries.com/v2/alpha/in");
         String responseBody = response.getBody().print();

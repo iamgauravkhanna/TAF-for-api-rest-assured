@@ -2,7 +2,7 @@ package project06;
 
 import base.BaseTest;
 import constants.TestConstants;
-import filters.RequestFilter;
+import filters.RequestResponseFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
@@ -26,7 +26,7 @@ public class XMLResponseTest extends BaseTest {
 
         RequestSpecification requestSpecification = new RequestSpecBuilder().
                 setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
-                .addFilter(new RequestFilter())
+                .addFilter(new RequestResponseFilter())
                 .build();
 
         Response response = given(requestSpecification)

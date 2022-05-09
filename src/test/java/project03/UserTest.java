@@ -69,7 +69,7 @@ public class UserTest extends BaseTest {
     public void usingPathParameter() {
 
         given().
-                pathParam("userId",1).
+                pathParam("userId", 1).
                 when().
                 get("http://jsonplaceholder.typicode.com/users/{userId}").
                 then().

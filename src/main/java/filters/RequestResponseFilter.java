@@ -7,7 +7,7 @@ import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
 import logger.TestLogger;
 
-public class RequestFilter implements Filter {
+public class RequestResponseFilter implements Filter {
 
     @Override
     public Response filter(FilterableRequestSpecification filterableRequestSpecification, FilterableResponseSpecification filterableResponseSpecification, FilterContext filterContext) {

@@ -13,6 +13,7 @@ import io.restassured.response.Response;
 import logger.TestLogger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pojo.request.project01.Booking;
 import pojo.response.project01.BookingResponse;
@@ -25,13 +26,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookingTest extends BaseTest {
 
-    @BeforeMethod
-    public void checkIfServiceIsRunning(){
+    @BeforeTest
+    public void checkIfServiceIsRunning() {
         Response response = new PingService().ping();
         Assert.assertEquals(response.statusCode(), StatusCode.CODE_201.code);
     }
 
-    @Test(groups = {"SMOKE", "SANITY", "REGRESSION"}, description = "I should be able to create booking", enabled = false)
+    @Test(groups = {"SMOKE", "SANITY", "REGRESSION"}, description = "I should be able to create booking", enabled = true)
     public void shouldBeAbleToCreateBooking() {
 
         Booking request = BookingService.bookingRequestBuilder();
@@ -55,7 +56,7 @@ public class BookingTest extends BaseTest {
         });
         Set<String> key = responseBody.keySet();
         for (String keySet : key) {
-            System.out.println(keySet + " ==> " + responseBody.get(keySet));
+            TestLogger.INFO(keySet + " ==> " + responseBody.get(keySet));
         }
     }
 
@@ -68,6 +69,6 @@ public class BookingTest extends BaseTest {
 
         Booking booking = response.as(Booking.class);
 
-        System.out.println(booking.toString());
+        TestLogger.INFO(booking.toString());
     }
 }

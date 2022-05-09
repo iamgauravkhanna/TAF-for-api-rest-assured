@@ -1,3 +1,3 @@
 mvn clean install test \
--DtestEnvironment=project01 \
--DSuiteFilePath=src/test/resources/suites/project01.xml
+-DtestEnvironment=project03 \
+-DSuiteFilePath=src/test/resources/suites/project03.xml

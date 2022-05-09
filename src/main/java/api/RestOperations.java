@@ -2,6 +2,7 @@ package api;
 
 import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import io.restassured.specification.RequestSpecification;
@@ -15,14 +16,15 @@ public class RestOperations {
 
     public static Response post(String path, Object requestBody) {
 
-        Response response = given(getRequestSpec()).
-                body(requestBody).
-                when().
-                post(path).
-                then().
-                spec(getResponseSpec()).
-                extract().
-                response();
+        Response response = given(getRequestSpec())
+                .contentType(ContentType.JSON)
+                .body(requestBody).
+                        when().
+                        post(path).
+                        then().
+                        spec(getResponseSpec()).
+                        extract().
+                        response();
 
         printDetailsInExtentReport(requestBody, response);
         return response;
@@ -31,14 +33,10 @@ public class RestOperations {
     public static Response get(String path) {
 
         Response response = given(getRequestSpec())
-                .log()
-                .all()
                 .when()
                 .get(path)
                 .then()
                 .spec(getResponseSpec())
-                .log()
-                .all()
                 .extract()
                 .response();
 

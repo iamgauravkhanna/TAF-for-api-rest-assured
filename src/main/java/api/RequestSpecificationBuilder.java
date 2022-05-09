@@ -1,7 +1,7 @@
 package api;
 
 import constants.TestConstants;
-import filters.RequestFilter;
+import filters.RequestResponseFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -14,14 +14,12 @@ public class RequestSpecificationBuilder {
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder().
                 setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
-                .addFilter(new RequestFilter())
-                .setAccept(ContentType.ANY)
                 .build();
     }
 
     public static RequestSpecification getRequestSpecWithFilters() {
         return new RequestSpecBuilder()
-                .addFilter(new RequestFilter())
+                .addFilter(new RequestResponseFilter())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .setBaseUri(ConfigLoader.getInstance().get(TestConstants.BASE_URL))
