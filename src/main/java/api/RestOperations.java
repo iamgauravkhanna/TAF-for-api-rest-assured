@@ -1,7 +1,5 @@
 package api;
 
-import com.aventstack.extentreports.markuputils.CodeLanguage;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -10,6 +8,7 @@ import logger.TestLogger;
 
 import static api.RequestSpecificationBuilder.*;
 
+import static api.ResponseSpecificationBuilder.getResponseSpec;
 import static io.restassured.RestAssured.given;
 
 public class RestOperations {

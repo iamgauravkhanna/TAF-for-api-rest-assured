@@ -6,6 +6,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import logger.TestLogger;
 import org.testng.annotations.Test;
+import utils.JsonUtil;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +17,8 @@ public class CountriesTest extends BaseTest {
     public void shouldBeAbleToGetCountryDetails() {
         Response response = RestOperations.get("https://restcountries.com/v2/alpha/in");
         String responseBody = response.getBody().print();
+
+        JsonUtil.getKey(responseBody,"symbol");
 
         JsonPath jsonPath = JsonPath.from(responseBody);
         TestLogger.INFO("name : " + jsonPath.get("name"));

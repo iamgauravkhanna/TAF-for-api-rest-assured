@@ -7,17 +7,24 @@
         <listener class-name="listeners.IExecutionListenerImpl"></listener>
     </listeners>
 
-    <test name="Project 01 - Test 01" parallel="methods"
+    <test name="Project 01" parallel="methods"
           thread-count="1">
         <packages>
             <package name="project01"></package>
         </packages>
     </test>
 
-    <test name="Project 02 - Test 01" parallel="methods"
+    <test name="Project 02" parallel="methods"
           thread-count="1">
         <packages>
             <package name="project02"></package>
+        </packages>
+    </test>
+
+    <test name="Project 03" parallel="methods"
+          thread-count="1">
+        <packages>
+            <package name="project03"></package>
         </packages>
     </test>
 
