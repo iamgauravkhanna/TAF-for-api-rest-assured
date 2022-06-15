@@ -5,7 +5,7 @@ import filters.RequestResponseFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import utils.ConfigLoader;
+import config.ConfigLoader;
 
 public class RequestSpecificationBuilder {
 

@@ -8,7 +8,7 @@ import logger.TestLogger;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utils.CSVUtil;
+import csv.CSVUtil;
 
 import static constants.TestConstants.RESOURCES_PATH;
 import static io.restassured.RestAssured.given;

@@ -1,4 +1,6 @@
-package utils;
+package config;
+
+import property.PropertyUtil;
 
 import java.util.Properties;
 

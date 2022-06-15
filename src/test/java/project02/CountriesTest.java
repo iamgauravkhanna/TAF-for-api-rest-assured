@@ -6,7 +6,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import logger.TestLogger;
 import org.testng.annotations.Test;
-import utils.JsonUtil;
+import json.JsonUtil;
 
 import java.io.File;
 import java.io.FileWriter;

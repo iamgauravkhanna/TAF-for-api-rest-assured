@@ -10,7 +10,7 @@ import io.restassured.specification.RequestSpecification;
 import logger.TestLogger;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
-import utils.ConfigLoader;
+import config.ConfigLoader;
 
 import java.util.List;
 
