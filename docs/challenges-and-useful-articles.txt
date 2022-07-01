@@ -1,2 +1,5 @@
-# REST Assured Tutorials
+# REST Assured Articles
 - http://makeseleniumeasy.com/rest-assured-tutorials/
+
+# REST Assured Videos
+- https://www.udemy.com/topic/rest-assured/
