@@ -12,7 +12,6 @@ import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import logger.TestLogger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pojo.request.project01.Booking;
@@ -21,8 +20,6 @@ import pojo.response.project01.BookingResponse;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookingTest extends BaseTest {
 
